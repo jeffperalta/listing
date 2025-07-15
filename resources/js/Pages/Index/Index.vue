@@ -6,7 +6,7 @@
 
 <script setup>
   import {ref} from 'vue';
-  
+
   defineProps({
     name: String,
   });
@@ -17,9 +17,3 @@
   }, 1000);
 </script>
 
-<script>
-  import MainLayout from '../../Layouts/MainLayout.vue';
-  export default {
-    layout: MainLayout
-  }
-</script>
