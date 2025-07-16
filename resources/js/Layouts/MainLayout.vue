@@ -21,8 +21,12 @@
 
 <style scope>
     .success {
+        padding: 10px;
+        border: 2px solid darkgreen;
         background-color: green;
         color: white;
+        border-radius: 5px;
+        margin: 10px 5px;
     }
 
     .main-nav {

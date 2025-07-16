@@ -6,6 +6,11 @@
             </Link>]
         </div>
         <div>
+            [<Link :href="`/listing/${listing.id}`" method="DELETE">
+                Delete
+            </Link>]
+        </div>
+        <div>
             <Link :href="`/listing/${listing.id}`">
                 <ListingAddress :listing="listing" />
             </Link>
