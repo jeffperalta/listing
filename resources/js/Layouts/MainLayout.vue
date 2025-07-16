@@ -1,12 +1,10 @@
 <!-- resources/js/Layouts/MainLayout.vue -->
 <template>
   <div>
-    <nav>
-      <Link href="/">Index</Link> &nbsp;
-      <Link href="/show">Show Page</Link> &nbsp;
-      <Link href="/listing">Listing Page</Link>
+    <nav class="main-nav">
+      <Link href="/listing">Listings</Link>
+      <Link href="/listing/create">New Listing</Link>
     </nav>
-    <!--<div>{{ timer }}</div>-->
     <div v-if="flashSuccess" class="success">
         {{ flashSuccess }}
     </div>
@@ -17,12 +15,6 @@
 <script setup>
     import { computed } from 'vue'
     import { Link, usePage } from '@inertiajs/vue3'
-    // import { ref } from 'vue'
-    // const timer = ref(0)
-    // setInterval(() => {
-    //  timer.value++
-    //}, 1000)
-
     const page = usePage()
     const flashSuccess = computed(() => page.props.flash?.success ?? "")
 </script>
@@ -31,5 +23,15 @@
     .success {
         background-color: green;
         color: white;
+    }
+
+    .main-nav {
+        min-height: 30px;
+        a {
+            margin: 2px;
+            border: 1px solid black;
+            border-radius: 5px 5px 0 0;
+            padding: 5px;
+        }
     }
 </style>
