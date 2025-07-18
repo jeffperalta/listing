@@ -12,15 +12,13 @@
               <ListingAddress :listing="listing" class="text-gray-500" />
           </Link>
       </div>
-      <div>
-          [<Link :href="route('listing.edit', {listing: listing.id})">
+      <div class="flex gap-2 mt-2 text-gray-500 dark:text-gray-300 font-light">
+          <Link class="hover:font-bold" :href="route('listing.edit', {listing: listing.id})">
               Edit
-          </Link>]
-      </div>
-      <div>
-          [<Link :href="route('listing.destroy', {listing: listing.id})" method="DELETE">
+          </Link>
+          <Link class="hover:font-bold cursor-pointer" :href="route('listing.destroy', {listing: listing.id})" method="DELETE">
               Delete
-          </Link>]
+          </Link>
       </div>
   </Box>
 </template>
