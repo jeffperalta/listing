@@ -6,10 +6,14 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [IndexController::class, 'index']);
-
 Route::get('/show', [IndexController::class, 'show']);
 
-Route::resource('listing', ListingController::class);
+Route::resource('listing', ListingController::class)
+  ->only(['index', 'show']);
+
+Route::resource('listing', ListingController::class)
+  ->only(['create', 'store', 'edit', 'update', 'destroy'])
+  ->middleware('auth');
 
 Route::get('login', [AuthController::class, 'create'])
   ->name('login');
