@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Listing;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class ListingController extends Controller
 {
@@ -39,7 +40,7 @@ class ListingController extends Controller
      */
     public function store(Request $request)
     {
-        Listing::create(
+        $listing = Listing::make(
             $request->validate([
                 'beds' => 'required|integer|min:0|max:20',
                 'baths' => 'required|integer|min:0|max:20',
@@ -51,6 +52,10 @@ class ListingController extends Controller
                 'price' => 'required|integer|min:1|max:20000000',
             ])
         );
+
+        $listing->owner()->associate(Auth::user());
+        $listing->save();
+
         return redirect()->route('listing.index')
             ->with('success', 'Listing was created!');
     }
