@@ -38,6 +38,12 @@ class AuthController extends Controller
 
     public function destroy(Request $request)
     {
-        // Handle the destruction of the session...
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()
+            ->route('listing.index');
     }
 }

@@ -10,8 +10,13 @@
                 <div class="text-xl text-indigo-600 dark:text-indigo-300 font-bold text-center">
                     <Link :href="route('listing.index')">Laravel</Link>
                 </div>
-                <div class="text-lg font-medium">
+                <div v-if="user" class="flex gap-4 items-center">
+                    <div class="text-sm text-gray-500">{{  user.name  }}</div>
                     <Link :href="route('listing.create')" class="btn-primary">+ New Listing</Link>
+                    <Link :href="route('logout')" method="delete" as="button">Logout</Link>
+                </div>
+                <div v-else>
+                    <Link :href="route('login')">Login</Link>
                 </div>
             </nav>
         </div>
@@ -30,4 +35,5 @@
     import { Link, usePage } from '@inertiajs/vue3'
     const page = usePage()
     const flashSuccess = computed(() => page.props.flash?.success ?? "")
+    const user = computed(() => page.props.user ?? null)
 </script>
