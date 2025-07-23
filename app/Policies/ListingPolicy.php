@@ -4,10 +4,16 @@ namespace App\Policies;
 
 use App\Models\Listing;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class ListingPolicy
 {
+    function before(?User $user, string $ability)
+    {
+        if ($user?->is_admin) {
+            return true; // Admins can do anything
+        }
+    }
+
     /**
      * Determine whether the user can view any models.
      */
