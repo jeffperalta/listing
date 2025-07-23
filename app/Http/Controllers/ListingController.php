@@ -9,9 +9,12 @@ use Illuminate\Support\Facades\Auth;
 
 class ListingController extends Controller
 {
+    use \Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+
     public function __construct()
     {
         //$this->middleware('auth')->except(['index', 'show']);
+        //$this->authorizeResource(Listing::class, 'listing');
     }
 
     /**
@@ -32,6 +35,7 @@ class ListingController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Listing::class);
         return inertia('Listing/Create');
     }
 
@@ -65,6 +69,8 @@ class ListingController extends Controller
      */
     public function show(Listing $listing)
     {
+
+        $this->authorize('view', $listing);
         return inertia(
             'Listing/Show',
             [
@@ -78,6 +84,7 @@ class ListingController extends Controller
      */
     public function edit(Listing $listing)
     {
+        $this->authorize('update', $listing);
         return inertia(
             'Listing/Edit',
             [
@@ -112,6 +119,7 @@ class ListingController extends Controller
      */
     public function destroy(Listing $listing)
     {
+        $this->authorize('delete', $listing);
         $listing->delete();
         return redirect()->back()
                     ->with('success', 'Listing was deleted!');

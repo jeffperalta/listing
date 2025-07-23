@@ -12,7 +12,7 @@
               <ListingAddress :listing="listing" class="text-gray-500" />
           </Link>
       </div>
-      <div class="flex gap-2 mt-2 text-gray-500 dark:text-gray-300 font-light">
+      <div v-if="user" class="flex gap-2 mt-2 text-gray-500 dark:text-gray-300 font-light">
           <Link class="hover:font-bold" :href="route('listing.edit', {listing: listing.id})">
               Edit
           </Link>
@@ -24,8 +24,9 @@
 </template>
 
 <script setup>
+    import { computed } from 'vue'
     import { useMonthlyPayment } from '@/Compasables/useMonthlyPayment';
-    import { Link } from '@inertiajs/vue3';
+    import { Link, usePage } from '@inertiajs/vue3';
     import ListingAddress from '@/Components/ListingAddress.vue'
     import Box from '@/Components/UI/Box.vue';
     import ListingSpace from '@/Components/ListingSpace.vue';
@@ -41,5 +42,8 @@
         2.5,
         25
     );
+
+    const page = usePage()
+    const user = computed(() => page.props.user ?? null)
 
 </script>
