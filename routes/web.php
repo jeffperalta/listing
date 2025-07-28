@@ -12,7 +12,9 @@ Route::get('/show', [IndexController::class, 'show']);
 
 
 Route::resource('listing', ListingController::class)
-  ->only(['create', 'store', 'edit', 'update', 'destroy'])
+  ->only([
+    'create', 'store', 'edit', 'update'
+  ])
   ->middleware('auth');
 
 Route::resource('listing', ListingController::class)
