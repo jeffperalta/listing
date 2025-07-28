@@ -30,5 +30,9 @@ class DatabaseSeeder extends Seeder
         \App\Models\Listing::factory(10)->create([
             'by_user_id' => 1, 
         ]);
+
+        \App\Models\Listing::factory(10)->create([
+            'by_user_id' => 2, 
+        ]);
     }
 }
