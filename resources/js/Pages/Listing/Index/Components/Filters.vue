@@ -35,12 +35,12 @@ const props = defineProps({
 });
 
 const filterForm = useForm({
-  priceFrom: props.filters.priceFrom ?? '',
-  priceTo: props.filters.priceTo ?? '',
+  priceFrom: props.filters.priceFrom ?? null,
+  priceTo: props.filters.priceTo ?? null,
   beds: props.filters.beds ?? null,
   baths: props.filters.baths ?? null,
-  minArea: props.filters.minArea ?? '',
-  maxArea: props.filters.maxArea ?? ''
+  minArea: props.filters.minArea ?? null,
+  maxArea: props.filters.maxArea ?? null
 });
 
 const filter = () => {
@@ -51,12 +51,12 @@ const filter = () => {
 };
 
 const reset = () => {
-  filterForm.priceFrom = '';
-  filterForm.priceTo = '';
+  filterForm.priceFrom = null;
+  filterForm.priceTo = null;
   filterForm.beds = null;
   filterForm.baths = null;
-  filterForm.minArea = '';
-  filterForm.maxArea = '';
+  filterForm.minArea = null;
+  filterForm.maxArea = null;
   filter()
 };
 
