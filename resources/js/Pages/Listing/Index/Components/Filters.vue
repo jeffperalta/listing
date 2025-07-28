@@ -9,12 +9,12 @@
         <select v-model="filterForm.beds" class="input input-filter-l w-25">
           <option value="null">Beds</option>
           <option v-for="i in 5" :key="i" :value="i">{{ i }}</option>
-          <option value="null">6+</option>
+          <option value="6+">6+</option>
         </select>
          <select v-model="filterForm.baths" class="input input-filter-r w-25">
           <option value="null">Baths</option>
           <option v-for="i in 5" :key="i" :value="i">{{ i }}</option>
-          <option value="null">6+</option>
+          <option value="6+">6+</option>
         </select>
       </div>
       <div class="flex flex-nowrap items-center">
