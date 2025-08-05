@@ -113,4 +113,12 @@ class RealtorListingController extends Controller
         return redirect()->route('realtor.listing.index')
             ->with('success', 'Listing was updated!');
     }
+
+    public function restore(Listing $listing) 
+    {
+        $listing->restore();
+        return redirect()
+            ->back()
+            ->with('success', 'Listing restored successfully.');
+    }
 }

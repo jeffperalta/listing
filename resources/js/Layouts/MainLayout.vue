@@ -34,11 +34,8 @@
 <script setup>
     import { computed } from 'vue'
     import { Link, usePage } from '@inertiajs/vue3'
-    //import { useRoute } from 'vue-router'
     const page = usePage()
     const flashSuccess = computed(() => page.props.flash?.success ?? "")
     const user = computed(() => page.props.user ?? null)
-   
-    //const route = useRoute()
-    const showCreateListingButton = computed(() => true||route.path.includes('realtor'))
+    const showCreateListingButton = computed(() => true)
 </script>

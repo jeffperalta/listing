@@ -9,7 +9,7 @@
       :key="listing.id" 
       class=" p-4 shadow rounded"
       :class="{
-        'bg-gray-200 border-gray-400': listing.deleted_at,
+        'bg-gray-200 border-gray-400 border-dashed': listing.deleted_at,
         'bg-white': !listing.deleted_at,
       }"
     >
@@ -21,14 +21,11 @@
           </div>
           <ListingAddress :listing="listing" class="text-gray-600 mt-2"/>
         </div>
-        <div 
-          v-if="!listing.deleted_at"
-          class="flex items-center gap-1 text-gray-600 dark:text-gray-400"
-        >
+        <div class="flex items-center gap-1 text-gray-600 dark:text-gray-400">
           <a class="btn-outline text-xs font-medium" 
             :href="route('listing.show', { listing: listing.id })"
             target="_blank"
-             
+            v-if="!listing.deleted_at" 
           >Preview</a>  
           <Link class="btn-outline text-xs font-medium"
             :href="route('realtor.listing.edit', { listing: listing.id })"
@@ -38,8 +35,18 @@
             :href="route('realtor.listing.destroy', { listing: listing.id })"
             as="button"
             method="delete"
+            v-if="!listing.deleted_at"
           >
             Delete
+          </Link>  
+          <Link 
+            class="btn-outline text-xs font-medium" 
+            :href="route('realtor.listing.restore', { listing: listing.id })"
+            as="button"
+            method="put"
+            v-else
+          >
+            Restore
           </Link>  
         </div>
       </div>
