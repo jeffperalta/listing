@@ -12,11 +12,6 @@
               <ListingAddress :listing="listing" class="text-gray-500" />
           </Link>
       </div>
-      <div v-if="user" class="flex gap-2 mt-2 text-gray-500 dark:text-gray-300 font-light">
-          <Link class="hover:font-bold" :href="route('listing.edit', {listing: listing.id})">
-              Edit
-          </Link>
-      </div>
   </Box>
 </template>
 

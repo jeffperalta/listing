@@ -21,11 +21,19 @@
           </div>
           <ListingAddress :listing="listing" class="text-gray-600 mt-2"/>
         </div>
-        <div class="flex items-center gap-1 text-gray-600 dark:text-gray-400">
-          <!-- <Link class="btn-outline text-xs font-medium">Preview</Link>  
-          <Link class="btn-outline text-xs font-medium">Edit</Link>   -->
+        <div 
+          v-if="!listing.deleted_at"
+          class="flex items-center gap-1 text-gray-600 dark:text-gray-400"
+        >
+          <a class="btn-outline text-xs font-medium" 
+            :href="route('listing.show', { listing: listing.id })"
+            target="_blank"
+             
+          >Preview</a>  
+          <Link class="btn-outline text-xs font-medium"
+            :href="route('realtor.listing.edit', { listing: listing.id })"
+          >Edit</Link>
           <Link 
-            v-if="!listing.deleted_at"
             class="btn-outline text-xs font-medium" 
             :href="route('realtor.listing.destroy', { listing: listing.id })"
             as="button"

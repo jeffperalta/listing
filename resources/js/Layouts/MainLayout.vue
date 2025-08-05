@@ -12,7 +12,7 @@
                 </div>
                 <div v-if="user" class="flex gap-4 items-center">
                     <Link class="text-sm text-gray-500" :href="route('realtor.listing.index')">{{  user.name  }}</Link>
-                    <Link :href="route('listing.create')" class="btn-primary">+ New Listing</Link>
+                    <Link v-if="showCreateListingButton" :href="route('realtor.listing.create')" class="btn-primary">+ New Listing</Link>
                     <Link :href="route('logout')" method="delete" as="button">Logout</Link>
                 </div>
                 <div v-else class="flex gap-2 items-center">
@@ -34,7 +34,11 @@
 <script setup>
     import { computed } from 'vue'
     import { Link, usePage } from '@inertiajs/vue3'
+    //import { useRoute } from 'vue-router'
     const page = usePage()
     const flashSuccess = computed(() => page.props.flash?.success ?? "")
     const user = computed(() => page.props.user ?? null)
+   
+    //const route = useRoute()
+    const showCreateListingButton = computed(() => true||route.path.includes('realtor'))
 </script>
