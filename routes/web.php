@@ -8,7 +8,7 @@ use App\Http\Controllers\UserAccountController;
 use App\Http\Controllers\RealtorListingController;
 use App\Http\Controllers\RealtorListingImageController;
 
-Route::get('/', [IndexController::class, 'index']);
+Route::get('/', [ListingController::class, 'index']);
 Route::get('/show', [IndexController::class, 'show']);
 
 
@@ -40,5 +40,5 @@ Route::prefix('realtor')
       ->withTrashed();
 
     Route::resource('listing.image', RealtorListingImageController::class)
-      ->only(['create', 'store']);
+      ->only(['create', 'store', 'destroy']);
   });
