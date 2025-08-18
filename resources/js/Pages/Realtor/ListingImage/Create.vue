@@ -8,6 +8,11 @@
         <button type="submit" class="btn-outline disabled:opacity-25 disabled:cursor-not-allowed" :disabled="!canUpload">Upload</button>
         <button type="reset" @click="reset" class="btn-outline">Reset</button>
       </section>
+      <div v-if="imageErrors.length">
+        <ul class="input-error">
+          <li v-for="(error, index) in imageErrors" :key="index">{{ error }}</li>
+        </ul>
+      </div>
     </form>
   </Box>
   <Box v-if="listing.images.length" class="mt-4">
@@ -50,6 +55,7 @@
     images: []
   })
 
+  const imageErrors = computed(() => Object.values(form.errors));
   const canUpload = computed(() => form.images.length > 0);
 
   const upload = () => {
