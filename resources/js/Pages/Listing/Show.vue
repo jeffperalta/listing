@@ -6,7 +6,7 @@
             </div>
             <div v-else class="font-medium text-color-gray-700">No Images</div>
         </Box>
-        <div class="md:col-span-5 flex flex-col gap-4"> 
+        <div class="md:col-span-5 flex flex-col gap-4">
             <Box>
                 <template #header>
                     Basic Information
@@ -26,16 +26,16 @@
                         type="range" min="0.1" max="30" step="0.1"
                         class="w-full h-4 bg-gray-200
                         rounded-lg appearance-none cursor-pointer
-                        dark:bg-gray-700" 
+                        dark:bg-gray-700"
                     />
 
                     <label class="label">Duration ({{ duration }} years)</label>
                     <input
-                        v-model.number="duration"    
-                        type="range" min="3" max="35" step="1" 
-                        class="w-full h-4 bg-gray-200 
+                        v-model.number="duration"
+                        type="range" min="3" max="35" step="1"
+                        class="w-full h-4 bg-gray-200
                         rounded-lg appearance-none cursor-pointer
-                        dark:bg-gray-700" 
+                        dark:bg-gray-700"
                     />
 
                     <div class="text-gray-600 dark:text-gray-300 mt-2">
@@ -59,6 +59,10 @@
                     </div>
                 </div>
             </Box>
+            <MakeOffer
+                :listing-id="listing.id"
+                :price="listing.price"
+            />
         </div>
     </div>
 </template>
@@ -68,6 +72,7 @@
     import ListingSpace from '@/Components/ListingSpace.vue';
     import Price from '@/Components/Price.vue';
     import Box from '@/Components/UI/Box.vue';
+    import MakeOffer from "@/Pages/Listing/Show/Components/MakeOffer.vue";
     import { ref } from 'vue';
     import { useMonthlyPayment } from '@/Compasables/useMonthlyPayment';
 
@@ -80,7 +85,7 @@
 
 
 
-    const { monthlyPayment, totalPaid, totalInterest } = 
+    const { monthlyPayment, totalPaid, totalInterest } =
         useMonthlyPayment(
             props.listing.price,
             interestRate,

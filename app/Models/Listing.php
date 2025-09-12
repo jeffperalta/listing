@@ -61,7 +61,7 @@ class Listing extends Model
             fn ($query) => $query->withTrashed()
         )->when(
             $filters['by'] ?? false,
-            fn ($query, $value) => 
+            fn ($query, $value) =>
                 !in_array($value, $this->sortable)
                 ? $query
                 : $query->orderBy(
@@ -70,4 +70,10 @@ class Listing extends Model
         );
 
     }
+
+    public function offers(): HasMany
+    {
+        return $this->hasMany(Offer::class, 'listing_id');
+    }
+
 }
