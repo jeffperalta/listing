@@ -15,11 +15,11 @@ class Offer extends Model
 
     public function listings(): BelongsTo
     {
-        return $this->belongsTo(Listing::class, 'listing_id')
+        return $this->belongsTo(Listing::class, 'listing_id');
     }
 
     public function bidder(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'user_id')
+        return $this->belongsTo(User::class, 'bidder_id');
     }
 }

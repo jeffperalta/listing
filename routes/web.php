@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserAccountController;
 use App\Http\Controllers\RealtorListingController;
 use App\Http\Controllers\RealtorListingImageController;
+use App\Http\Controllers\ListingOfferController;
 
 Route::get('/', [ListingController::class, 'index']);
 Route::get('/show', [IndexController::class, 'show']);
@@ -15,12 +16,16 @@ Route::get('/show', [IndexController::class, 'show']);
 Route::resource('listing', ListingController::class)
   ->only(['index', 'show']);
 
+Route::resource('listing.offer', ListingOfferController::class)
+    ->middleware('auth')
+    ->only(['store']);
+
 Route::get('login', [AuthController::class, 'create'])
   ->name('login');
 
 Route::post('login', [AuthController::class, 'store'])
   ->name('login.store');
-  
+
 Route::delete('logout', [AuthController::class, 'destroy'])
   ->name('logout');
 
@@ -35,10 +40,11 @@ Route::prefix('realtor')
     Route::name('listing.restore')
       ->put('listing/{listing}/restore', [RealtorListingController::class, 'restore'])
       ->withTrashed();
-      
+
     Route::resource('listing', RealtorListingController::class)
       ->withTrashed();
 
     Route::resource('listing.image', RealtorListingImageController::class)
       ->only(['create', 'store', 'destroy']);
   });
+

@@ -13,16 +13,26 @@ const form = useForm({
     amount: props.price
 })
 
+const makeOffer = () => {
+    return form.post(
+        route('listing.offer.store',{ listing: props.listingId }),
+        {
+            preserveScroll: true,
+            preserveState: true
+        }
+    )
+}
+
 const difference = computed(() => {
     return form.amount - props.price
 })
 
 const max = computed(() => {
-    return props.price * 2;
+    return Math.round(props.price * 2);
 })
 
 const min = computed(() => {
-    return props.price / 2;
+    return Math.round(props.price / 2);
 })
 
 </script>
@@ -31,7 +41,7 @@ const min = computed(() => {
     <Box>
         <template #header>Make an Offer</template>
         <div>
-            <form>
+            <form @submit.prevent="makeOffer">
                 <input v-model.number="form.amount"
                        type="text" class="input" placeholder="Make an Offer" />
                 <input
@@ -44,6 +54,7 @@ const min = computed(() => {
                 <button type="submit" class="btn btn-outline w-full text-sm">
                     Make an Offer
                 </button>
+                {{ form.errors.amount }}
             </form>
         </div>
         <div class="flex justify-between text-gray-500 mt-2">
