@@ -14,7 +14,8 @@ class Listing extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'beds', 'baths', 'area', 'city', 'code', 'street', 'street_nr', 'price'
+        'beds', 'baths', 'area', 'city', 'code', 'street', 'street_nr', 'price',
+        'sold_at'
     ];
 
     protected $sortable = [
@@ -34,6 +35,16 @@ class Listing extends Model
     public function scopeMostRecent(Builder $query)
     {
         return $query->orderBy('created_at', 'desc');
+    }
+
+    public function scopeWithoutSold(Builder $query)
+    {
+        // return $query->whereDoesntHave('offers')
+        //     ->orWhereHas('offers', function (Builder $query) {
+        //         return $query->whereNull('accepted_at')
+        //             ->whereNull('rejected_at');
+        //     });
+        return $query->whereNull('sold_at');
     }
 
     public function scopeFilter(Builder $query, array $filters)
@@ -73,7 +84,8 @@ class Listing extends Model
 
     public function offers(): HasMany
     {
-        return $this->hasMany(Offer::class, 'listing_id');
+        return $this->hasMany(Offer::class, 'listing_id')
+            ->orderBy('amount', 'desc');
     }
 
 }

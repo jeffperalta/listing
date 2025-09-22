@@ -35,6 +35,7 @@ class ListingController extends Controller
                 'listings' => 
                     Listing::mostRecent()
                         ->filter($filters)
+                        ->withoutSold()
                         ->paginate(9)
                         ->withQueryString()
             ]
