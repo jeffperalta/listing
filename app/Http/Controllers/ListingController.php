@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class ListingController extends Controller
 {
-    use \Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
     public function __construct()
     {

@@ -15,6 +15,14 @@
     >
       <div class="flex flex-col md:flex-row gap-2 md:items-center justify-between">
         <div>
+          <div 
+            v-if="listing.sold_at !== null"
+            class="text-xs font-bold uppercase 
+            border border-dashed border-green-400 text-green-500
+            dark:border-green-600 dark:text-green-600
+            rounded-md px-2 py-1 inline-block mb-2">
+            sold
+          </div>
           <div class="xl:flex items-center gap-2">
             <Price :price="listing.price" class="text-2xl font-medium"/>
             <ListingSpace :listing="listing" />
