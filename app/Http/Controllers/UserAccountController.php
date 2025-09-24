@@ -20,7 +20,10 @@ class UserAccountController extends Controller
             'email' => 'required|email|unique:users',
             'password' => 'required|min:8|confirmed'
         ]));
+
         Auth::login($user);
+
+        $user->sendEmailVerificationNotification();
     
         return redirect()->route('listing.index')
             ->with('success', 'Account created!');
